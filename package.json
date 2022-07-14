@@ -2,6 +2,9 @@
   "name": "hackernews-typescript-graphql",
   "version": "1.0.0",
   "description": "",
+  "engines": {
+    "node": "v16.14.0"
+  },
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
