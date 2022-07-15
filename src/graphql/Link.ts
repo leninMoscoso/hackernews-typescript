@@ -63,12 +63,12 @@ export const LinkQuery = extendType({
       },
       async resolve(parent, args, context) {
         const where = args.filter
-        ? {
-          OR: [
-            { description: { contains: args.filter }},
-            { url: {contains: args.filter } }
-          ]
-         }
+          ? {
+              OR: [
+                { description: { contains: args.filter }},
+                { url: {contains: args.filter } }
+              ]
+            }
         :{}
         
         const links = await context.prisma.link.findMany({
@@ -93,25 +93,25 @@ export const LinkQuery = extendType({
   }
 })
 
-export const LinkQueryId = extendType({
-  type: "Query",
-  definition(t) {
-    t.field("link", {
-      type: "Link",
-      args: {
-        id: nonNull(idArg()),
-      },
-      resolve(parent, args, context) {
-        const link = context.prisma.link.findUnique({
-          where: {
-            id: +args.id,
-          },
-        });
-        return link;
-      },
-    });
-  },
-});
+// export const LinkQueryId = extendType({
+//   type: "Query",
+//   definition(t) {
+//     t.field("link", {
+//       type: "Link",
+//       args: {
+//         id: nonNull(idArg()),
+//       },
+//       resolve(parent, args, context) {
+//         const link = context.prisma.link.findUnique({
+//           where: {
+//             id: +args.id,
+//           },
+//         });
+//         return link;
+//       },
+//     });
+//   },
+// });
 
 export const LinkMutation = extendType({
   type: "Mutation",
@@ -143,48 +143,48 @@ export const LinkMutation = extendType({
   },
 });
 
-export const LinkUpdate = extendType({
-  type: "Mutation",
-  definition(t) {
-    t.nonNull.field("updateLink", {
-      type: "Link",
-      args: {
-        id: nonNull(idArg()),
-        url: stringArg(),
-        description: stringArg(),
-      },
-      resolve(parent, args, context) {
-        const linkUpdated = context.prisma.link.update({
-          where: {
-            id: +args.id,
-          },
-          data: {
-            description: args.description!,
-            url: args.url!,
-          },
-        });
-        return linkUpdated;
-      },
-    });
-  },
-});
+// export const LinkUpdate = extendType({
+//   type: "Mutation",
+//   definition(t) {
+//     t.nonNull.field("updateLink", {
+//       type: "Link",
+//       args: {
+//         id: nonNull(idArg()),
+//         url: stringArg(),
+//         description: stringArg(),
+//       },
+//       resolve(parent, args, context) {
+//         const linkUpdated = context.prisma.link.update({
+//           where: {
+//             id: +args.id,
+//           },
+//           data: {
+//             description: args.description!,
+//             url: args.url!,
+//           },
+//         });
+//         return linkUpdated;
+//       },
+//     });
+//   },
+// });
 
-export const delLink = extendType({
-  type: "Mutation",
-  definition(t) {
-    t.nonNull.field("deleteLink", {
-      type: "Link",
-      args: {
-        id: nonNull(idArg()),
-      },
-      resolve(parent, args, context) {
-        const linkDeleted = context.prisma.link.delete({
-          where: {
-            id: +args.id,
-          },
-        });
-        return linkDeleted;
-      },
-    });
-  },
-});
+// export const delLink = extendType({
+//   type: "Mutation",
+//   definition(t) {
+//     t.nonNull.field("deleteLink", {
+//       type: "Link",
+//       args: {
+//         id: nonNull(idArg()),
+//       },
+//       resolve(parent, args, context) {
+//         const linkDeleted = context.prisma.link.delete({
+//           where: {
+//             id: +args.id,
+//           },
+//         });
+//         return linkDeleted;
+//       },
+//     });
+//   },
+// });

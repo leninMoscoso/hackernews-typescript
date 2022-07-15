@@ -34,17 +34,14 @@ input LinkOrderByInput {
 }
 
 type Mutation {
-  deleteLink(id: ID!): Link!
   login(email: String!, password: String!): AuthPayload!
   post(description: String!, url: String!): Link!
   signup(email: String!, name: String!, password: String!): AuthPayload!
-  updateLink(description: String, id: ID!, url: String): Link!
   vote(linkId: Int!): Vote
 }
 
 type Query {
   feed(filter: String, orderBy: [LinkOrderByInput!], skip: Int, take: Int): Feed!
-  link(id: ID!): Link
 }
 
 enum Sort {
@@ -57,6 +54,7 @@ type User {
   id: Int!
   links: [Link!]!
   name: String!
+  votes: [Link!]!
 }
 
 type Vote {

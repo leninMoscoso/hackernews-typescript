@@ -107,22 +107,20 @@ export interface NexusGenFieldTypes {
     voters: NexusGenRootTypes['User'][]; // [User!]!
   }
   Mutation: { // field return type
-    deleteLink: NexusGenRootTypes['Link']; // Link!
     login: NexusGenRootTypes['AuthPayload']; // AuthPayload!
     post: NexusGenRootTypes['Link']; // Link!
     signup: NexusGenRootTypes['AuthPayload']; // AuthPayload!
-    updateLink: NexusGenRootTypes['Link']; // Link!
     vote: NexusGenRootTypes['Vote'] | null; // Vote
   }
   Query: { // field return type
     feed: NexusGenRootTypes['Feed']; // Feed!
-    link: NexusGenRootTypes['Link'] | null; // Link
   }
   User: { // field return type
     email: string; // String!
     id: number; // Int!
     links: NexusGenRootTypes['Link'][]; // [Link!]!
     name: string; // String!
+    votes: NexusGenRootTypes['Link'][]; // [Link!]!
   }
   Vote: { // field return type
     link: NexusGenRootTypes['Link']; // Link!
@@ -149,22 +147,20 @@ export interface NexusGenFieldTypeNames {
     voters: 'User'
   }
   Mutation: { // field return type name
-    deleteLink: 'Link'
     login: 'AuthPayload'
     post: 'Link'
     signup: 'AuthPayload'
-    updateLink: 'Link'
     vote: 'Vote'
   }
   Query: { // field return type name
     feed: 'Feed'
-    link: 'Link'
   }
   User: { // field return type name
     email: 'String'
     id: 'Int'
     links: 'Link'
     name: 'String'
+    votes: 'Link'
   }
   Vote: { // field return type name
     link: 'Link'
@@ -174,9 +170,6 @@ export interface NexusGenFieldTypeNames {
 
 export interface NexusGenArgTypes {
   Mutation: {
-    deleteLink: { // args
-      id: string; // ID!
-    }
     login: { // args
       email: string; // String!
       password: string; // String!
@@ -190,11 +183,6 @@ export interface NexusGenArgTypes {
       name: string; // String!
       password: string; // String!
     }
-    updateLink: { // args
-      description?: string | null; // String
-      id: string; // ID!
-      url?: string | null; // String
-    }
     vote: { // args
       linkId: number; // Int!
     }
@@ -205,9 +193,6 @@ export interface NexusGenArgTypes {
       orderBy?: NexusGenInputs['LinkOrderByInput'][] | null; // [LinkOrderByInput!]
       skip?: number | null; // Int
       take?: number | null; // Int
-    }
-    link: { // args
-      id: string; // ID!
     }
   }
 }

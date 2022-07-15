@@ -1,21 +1,21 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
+datasource db {
+  provider = "postgresql" 
+  url      = env("DATABASE_URL") 
+}
+
 generator client {
   provider = "prisma-client-js"
 }
 
-datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
-}
-
 model Link {
-  id          Int      @id @default(autoincrement())
+  id          Int      @id @default(autoincrement()) 
   createdAt   DateTime @default(now())
   description String
   url         String
-  postedBy    User?    @relation(name: "PostedBy", fields: [postedById], references: [id])
+  postedBy    User?    @relation(name: "foobar", fields: [postedById], references: [id])
   postedById  Int?
   voters      User[]   @relation(name: "Votes")
 }
@@ -25,6 +25,6 @@ model User {
   name     String
   email    String @unique
   password String
-  links    Link[] @relation(name: "PostedBy")
+  links    Link[] @relation(name: "foobar")
   votes    Link[] @relation(name: "Votes")
 }
